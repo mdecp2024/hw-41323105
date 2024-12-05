@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,12 +141,49 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w11_hw << <a href='w11_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w12_hw</h1>
+    <div id="tipue_search_content">w11_hw << <a href='w11_hw.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw<br /><h1>w12_hw</h1>
 <p><span>Brython 以及 Jupyter lab</span><span> 環境, 執行</span><a href="http://229.cycu.org/python_2025_lite.7z">可攜程式</a><span> notebook 目錄中的 </span><span>01_string_input_print.ipynb 至 10_for_search.ipynb</span><span> 筆記本程式, 完成後請將能在 Brython 執行的程式碼存入個人 </span><span>Gist</span><span> </span></p>
-<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/7b09f27f6bdcd7f68cb912d84caa84d3/raw/9b61a038cf81903dcbd80e14c1339cb7ceb08f75/gistfile1.txt">程式碼</a></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7Lwx-cWWv1Y?si=jY460tVBjxsjQxcG" title="YouTube video player" width="560"></iframe></p>
-<p>利用for迴圈</p>
-<p></p><br />w11_hw << <a href='w11_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<p>04_list_append_remove <img alt="cool" height="11" src="./../cmsimde/static/tinymce4/tinymce/plugins/emoticons/img/smiley-cool.gif" width="11"/></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/3d9eb31e8936cdd989c541a058914e8e/raw/2ec701fe1257faf6fdab0ee904ac9d9a1b5c9c71/gistfile1.txt">程式碼</a></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 初始化一個包含 "carrots"（胡蘿蔔）、"chocolate"（巧克力）和 "olives"（橄欖）的購物清單
+shopping_list = ["carrots", "chocolate", "olives"]
+
+# 顯示當前的購物清單
+print(shopping_list)
+
+# 使用 input() 函式讓用戶輸入要購買的物品
+new_item = input("What else do I have to buy?")
+
+# 檢查用戶輸入的物品是否已經在購物清單中
+if new_item in shopping_list:
+# 如果物品已經在清單中，顯示提示訊息
+print(new_item + " is/are already in the shopping list")
+# 顯示目前的購物清單
+print(shopping_list)
+else:
+# 如果物品不在清單中，將其添加到清單中
+shopping_list.append(new_item)
+# 顯示更新後的購物清單
+print(shopping_list)
+# 問用戶是否要移除某個物品
+item_to_remove = input("What do I have to remove?")
+
+# 檢查用戶輸入的物品是否在購物清單中
+if item_to_remove in shopping_list:
+# 如果該物品在清單中，將其從清單中移除
+shopping_list.remove(item_to_remove)
+# 顯示移除後的購物清單
+print(shopping_list)
+else:
+# 如果該物品不在清單中，顯示提示訊息
+print(item_to_remove + " is/are not in the list")
+# 顯示仍然保留的購物清單
+print(shopping_list)</pre>
+<p><br/><br/></p>
+<p>05_list_index_pop_insert</p>
+<p></p>
+<br />w11_hw << <a href='w11_hw.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw</div>
         
     <!-- footer -->
       <div class="container">
