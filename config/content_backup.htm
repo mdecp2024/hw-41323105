@@ -66,11 +66,11 @@
 <p><span>心得:運用ChatGPT查詢如何利用黑色方塊圍出一個圓形區域</span></p>
 <p><img alt="" src="/images/index.html"/><img alt="" height="129" src="/images/螢幕擷取畫面 2024-11-28 152348.png" width="130"/></p>
 <h2>w12_hw</h2>
-<p><span>Brython 以及 Jupyter lab</span><span> 環境, 執行</span><a href="http://229.cycu.org/python_2025_lite.7z">可攜程式</a><span> notebook 目錄中的 </span><span>01_string_input_print.ipynb 至 10_for_search.ipynb</span><span> 筆記本程式, 完成後請將能在 Brython 執行的程式碼存入個人 </span><span>Gist</span><span> </span></p>
+<p><span>Brython 以及 Jupyter lab</span><span> 環境, 執行</span><a href="http://229.cycu.org/python_2025_lite.7z">可攜程式</a><span> notebook 目錄中的 </span><span>01_string_input_print.ipynb 至 10_for_search.ipynb</span><span> 筆記本程式, 完成後請將能在 Brython 執行的程式碼存入個人 </span><span>Gist</span><span> 。</span></p>
 <p>04_list_append_remove <img alt="cool" height="11" src="/static/tinymce4/tinymce/plugins/emoticons/img/smiley-cool.gif" width="11"/></p>
-<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/3d9eb31e8936cdd989c541a058914e8e/raw/2ec701fe1257faf6fdab0ee904ac9d9a1b5c9c71/gistfile1.txt">程式碼</a></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/3d9eb31e8936cdd989c541a058914e8e/raw/2ec701fe1257faf6fdab0ee904ac9d9a1b5c9c71/gistfile1.txt">程式碼-04</a></p>
 <p></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 初始化一個包含 "carrots"（胡蘿蔔）、"chocolate"（巧克力）和 "olives"（橄欖）的購物清單
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 初始化設定一個包含 "carrots"、"chocolate"和 "olives"的購物清單
 shopping_list = ["carrots", "chocolate", "olives"]
 
 # 顯示當前的購物清單
@@ -104,10 +104,87 @@ else:
 print(item_to_remove + " is/are not in the list")
 # 顯示仍然保留的購物清單
 print(shopping_list)</pre>
-<p><br/><br/></p>
-<p>05_list_index_pop_insert</p>
+<p>心得:這程式可主要由.append()新增和.remove()刪除來呈現出購買清單的增減，再運用print()去輸入及更新資訊。</p>
 <p></p>
-<h2>w13_hw</h2>
+<p>05_list_index_pop_insert</p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/409c23feaec3f91585c27a6e2a5dedf3/raw/d066c0acf7be43e5d6078903373dc34d0938a772/gistfile1.txt">程式碼-05</a></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義當日的菜單，包含三個項目
+todays_menu = ["burger", "salad", "coke"]
+# 顯示原始菜單
+print(todays_menu)
+
+# 找出 "salad" 的索引位置
+side_dish_index = todays_menu.index("salad")
+# 顯示出 "salad" 的索引位置
+print(side_dish_index)
+
+# 根據索引 "salad" 從菜單中刪除
+todays_menu.pop(side_dish_index)
+# 顯示刪除 "salad" 後的菜單
+print(todays_menu)
+
+# 在原來的索引位置插入新的配菜 "fries"
+todays_menu.insert(side_dish_index, "fries")
+# 顯示更新後的菜單
+print(todays_menu)</pre>
+<p>心得:</p>
+<p></p>
+<p>06_list_slicing.ipynb</p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/d1e8d5a29aad174c4a304ce8f42c8864/raw/8ce2dc4ad8cce68e0e6dfe52eb2602033498b490/gistfile1.txt">程式碼-06</a></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義出城市列表
+cities = ["San Diego", "Prague", "Cape Town", "Tokyo", "Melbourne"]
+
+# 顯示完整的城市列表
+print(cities)
+
+# 顯示列表中索引為 1 的城市（第二個城市）
+print(cities[1]) # 輸出: "Prague"
+
+# 顯示索引 1 到 3（不包括索引 4）的城市
+print(cities[1:4]) # 輸出: ["Prague", "Cape Town", "Tokyo"]
+
+# 顯示索引 1 到 3 的城市，間隔 2（步長為 2）
+print(cities[1:4:2]) # 輸出: ["Prague", "Tokyo"]
+
+# 顯示索引 0 到 2（不包括索引 3）的城市
+print(cities[0:3]) # 輸出: ["San Diego", "Prague", "Cape Town"]
+
+# 顯示從起始到索引 2（不包括索引 3）的城市，省略起始索引
+print(cities[:3]) # 輸出: ["San Diego", "Prague", "Cape Town"]
+
+# 顯示索引 2 到 4（不包括索引 5）的城市
+print(cities[2:5]) # 輸出: ["Cape Town", "Tokyo", "Melbourne"]
+
+# 顯示從索引 2 到結尾的城市
+print(cities[2:]) # 輸出: ["Cape Town", "Tokyo", "Melbourne"]
+
+# 顯示索引 0 到 4（不包括索引 5）的城市，間隔 2（步長為 2）
+print(cities[0:5:2]) # 輸出: ["San Diego", "Cape Town", "Melbourne"]
+
+# 顯示整個列表，間隔 2（步長為 2）
+print(cities[::2]) # 輸出: ["San Diego", "Cape Town", "Melbourne"]
+
+# 顯示索引為 4 的城市（最後一個城市）
+print(cities[4]) # 輸出: "Melbourne"
+
+# 使用負索引顯示最後一個城市
+print(cities[-1]) # 輸出: "Melbourne"
+
+# 使用負索引顯示索引 -4 到 -1（不包括索引 -1）的城市
+print(cities[-4:-1]) # 輸出: ["Prague", "Cape Town", "Tokyo"]
+
+# 逆向切片：顯示索引 3 到 1 的城市，按逆序排列
+print(cities[3:0:-1]) # 輸出: ["Tokyo", "Cape Town", "Prague"]
+
+# 使用負索引逆向切片：顯示索引 -2 到 -5 的城市，按逆序排列
+print(cities[-2:-5:-1]) # 輸出: ["Tokyo", "Cape Town", "Prague"]
+
+# 使用步長 -1 顯示整個列表，按逆序排列
+print(cities[::-1]) # 輸出: ["Melbourne", "Tokyo", "Cape Town", "Prague", "San Diego"]</pre>
+<p><br/><br/></p>
+<p></p><h2>w13_hw</h2>
 <p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -267,7 +344,7 @@ ctx.beginPath()
 ctx.arc(50, 50, 70.7, 0, 2 * 3.14) 
 ctx.stroke()
 ctx.beginPath()
-ctx.arc(100, 100, 70.7, 0, 2 * 3.14)  # 圓心在(300, 300)，半徑為141.4
+ctx.arc(100, 100, 70.7, 0, 2 * 3.14) 
 ctx.stroke()
 </script>
 </p><h1>HW 2</h1>
