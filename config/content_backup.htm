@@ -183,8 +183,7 @@ print(cities[-2:-5:-1]) # 輸出: ["Tokyo", "Cape Town", "Prague"]
 
 # 使用步長 -1 顯示整個列表，按逆序排列
 print(cities[::-1]) # 輸出: ["Melbourne", "Tokyo", "Cape Town", "Prague", "San Diego"]</pre>
-<p><br/><br/></p>
-<p></p><h2>w13_hw</h2>
+<p><span>說明:這範例程式在說明了索引存取與切篇操作的運用，</span><span>索引存取單一元素，</span><span>切片選擇多個元素，</span><span>使用步長調整選擇模式（正向或逆向），</span><span>省略部分參數進行靈活操作。</span></p><h2>w13_hw</h2>
 <p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -207,59 +206,93 @@ brython_div = doc["brython_div1"]
 brython_div <= canvas
 ctx=canvas.getContext("2d")
 
+ctx.fillStyle = 'green'  # 綠色
+ctx.beginPath()
+ctx.rect(10,10,100,100,)  # 填充第二個正方形
+ctx.fill()
+
+ctx.fillStyle = 'yellow' 
+ctx.beginPath()
+ctx.rect(60,60,100,100)  # 填充第二個正方形
+ctx.fill()
+
+ctx.fillStyle = 'blue'  
+ctx.beginPath()
+ctx.rect(60,60,50,50)  # 填充第二個正方形
+ctx.fill()
+
+# 繪製三角形
+ctx.fillStyle = 'orange'
+ctx.beginPath()
+ctx.moveTo(10, 10)  # 第一個頂點
+ctx.lineTo(110, 110)  # 第二個頂點
+ctx.lineTo(110, 10)  # 第三個頂點
+ctx.closePath()  # 封閉路徑
+ctx.fill()  # 填充三角形
+
+# 繪製三角形
+ctx.fillStyle = 'pink'
+ctx.beginPath()
+ctx.moveTo(60, 60)  # 第一個頂點
+ctx.lineTo(110, 60)  # 第二個頂點
+ctx.lineTo(110, 110)  # 第三個頂點
+ctx.closePath()  # 封閉路徑
+ctx.fill()  # 填充三角形
+
+
 ctx.lineWidth = 1
 ctx.strokeStyle =  'blue'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(100,100)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(10,100)
+ctx.lineTo(10,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(100,10)
+ctx.lineTo(110,10)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(100,10)
-ctx.lineTo(100,100)
+ctx.moveTo(110,10)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(10,100)
-ctx.lineTo(100,100)
+ctx.moveTo(10,110)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(50,150)
+ctx.moveTo(60,60)
+ctx.lineTo(60,160)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(150,50)
+ctx.moveTo(60,60)
+ctx.lineTo(160,60)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(150,50)
+ctx.moveTo(160,160)
+ctx.lineTo(160,60)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(50,150)
+ctx.moveTo(160,160)
+ctx.lineTo(60,160)
 ctx.stroke()
 </script>
 </p><h3>w13_ai</h3>
@@ -270,8 +303,8 @@ ctx.stroke()
 <!--啟動Brython-->
 <p>
 <script>
--window.onload=function(){
-brython({debug:1,pythonpath:['/static/','./../downloads/py/']});
+window.onload=function(){
+    brython({debug:1,pythonpath:['/static/','./../downloads/py/']});
 }
 </script>
 </p>
@@ -280,71 +313,58 @@ brython({debug:1,pythonpath:['/static/','./../downloads/py/']});
 <script type="text/python">
 from browser import html
 from browser import document as doc
-canvas = html.CANVAS(width=400,height=400)
+
+# 初始化畫布
+canvas = html.CANVAS(width=600, height=600)
 brython_div = doc["brython_div1"]
 brython_div <= canvas
-ctx=canvas.getContext("2d")
+ctx = canvas.getContext("2d")
 
+# 填充封閉區域
+
+ctx.fillStyle = 'blue'  # 藍色
+ctx.beginPath()
+ctx.arc(200, 200, 141.4, 0, 2 * 3.14)  # 填充第一個圓
+ctx.fill()
+
+ctx.fillStyle = 'yellow'  # 黃色
+ctx.beginPath()
+ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 填充第二個圓
+ctx.fill()
+
+ctx.fillStyle =  'red'   # 紅色
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)  # 填充第一個正方形
+ctx.fill()
+
+ctx.fillStyle =  'green'   # 綠色
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200)  # 填充第二個正方形
+ctx.fill()
+
+# 畫線條
 ctx.lineWidth = 1
-ctx.strokeStyle =  'blue'
+ctx.strokeStyle = 'blue'
 ctx.beginPath()
-ctx.moveTo(10,10)
-ctx.lineTo(100,100)
+ctx.moveTo(100, 100)
+ctx.lineTo(400, 400)
 ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
+
+# 畫正方形
+ctx.strokeStyle = 'red'
 ctx.beginPath()
-ctx.moveTo(10,10)
-ctx.lineTo(10,100)
+ctx.rect(100, 100, 200, 200)  # 第一個正方形
+ctx.rect(200, 200, 200, 200)  # 第二個正方形
 ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
+
+# 畫圓
+ctx.strokeStyle = 'black'
 ctx.beginPath()
-ctx.moveTo(10,10)
-ctx.lineTo(100,10)
+ctx.arc(200, 200, 141.4, 0, 2 * 3.14)  # 第一個圓
 ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
+
 ctx.beginPath()
-ctx.moveTo(100,10)
-ctx.lineTo(100,100)
-ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
-ctx.beginPath()
-ctx.moveTo(10,100)
-ctx.lineTo(100,100)
-ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
-ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(50,150)
-ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
-ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(150,50)
-ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
-ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(150,50)
-ctx.stroke()
-ctx.lineWidth = 1
-ctx.strokeStyle =  'red'
-ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(50,150)
-ctx.stroke()
-ctx.strokeStyle = 'black'  
-ctx.beginPath()
-ctx.arc(50, 50, 70.7, 0, 2 * 3.14) 
-ctx.stroke()
-ctx.beginPath()
-ctx.arc(100, 100, 70.7, 0, 2 * 3.14) 
+ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 第二個圓
 ctx.stroke()
 </script>
 </p><h1>HW 2</h1>

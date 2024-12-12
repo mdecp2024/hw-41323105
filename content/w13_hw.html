@@ -164,59 +164,93 @@ brython_div = doc["brython_div1"]
 brython_div <= canvas
 ctx=canvas.getContext("2d")
 
+ctx.fillStyle = 'green'  # 綠色
+ctx.beginPath()
+ctx.rect(10,10,100,100,)  # 填充第二個正方形
+ctx.fill()
+
+ctx.fillStyle = 'yellow' 
+ctx.beginPath()
+ctx.rect(60,60,100,100)  # 填充第二個正方形
+ctx.fill()
+
+ctx.fillStyle = 'blue'  
+ctx.beginPath()
+ctx.rect(60,60,50,50)  # 填充第二個正方形
+ctx.fill()
+
+# 繪製三角形
+ctx.fillStyle = 'orange'
+ctx.beginPath()
+ctx.moveTo(10, 10)  # 第一個頂點
+ctx.lineTo(110, 110)  # 第二個頂點
+ctx.lineTo(110, 10)  # 第三個頂點
+ctx.closePath()  # 封閉路徑
+ctx.fill()  # 填充三角形
+
+# 繪製三角形
+ctx.fillStyle = 'pink'
+ctx.beginPath()
+ctx.moveTo(60, 60)  # 第一個頂點
+ctx.lineTo(110, 60)  # 第二個頂點
+ctx.lineTo(110, 110)  # 第三個頂點
+ctx.closePath()  # 封閉路徑
+ctx.fill()  # 填充三角形
+
+
 ctx.lineWidth = 1
 ctx.strokeStyle =  'blue'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(100,100)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(10,100)
+ctx.lineTo(10,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
 ctx.moveTo(10,10)
-ctx.lineTo(100,10)
+ctx.lineTo(110,10)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(100,10)
-ctx.lineTo(100,100)
+ctx.moveTo(110,10)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(10,100)
-ctx.lineTo(100,100)
+ctx.moveTo(10,110)
+ctx.lineTo(110,110)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(50,150)
+ctx.moveTo(60,60)
+ctx.lineTo(60,160)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(50,50)
-ctx.lineTo(150,50)
+ctx.moveTo(60,60)
+ctx.lineTo(160,60)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(150,50)
+ctx.moveTo(160,160)
+ctx.lineTo(160,60)
 ctx.stroke()
 ctx.lineWidth = 1
 ctx.strokeStyle =  'red'
 ctx.beginPath()
-ctx.moveTo(150,150)
-ctx.lineTo(50,150)
+ctx.moveTo(160,160)
+ctx.lineTo(60,160)
 ctx.stroke()
 </script>
 </p><br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w13_ai.html'>Next</a> >> w13_ai</div>
