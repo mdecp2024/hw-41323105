@@ -183,7 +183,8 @@ print(cities[-2:-5:-1]) # 輸出: ["Tokyo", "Cape Town", "Prague"]
 
 # 使用步長 -1 顯示整個列表，按逆序排列
 print(cities[::-1]) # 輸出: ["Melbourne", "Tokyo", "Cape Town", "Prague", "San Diego"]</pre>
-<p><span>說明:這範例程式在說明了索引存取與切篇操作的運用，</span><span>索引存取單一元素，</span><span>切片選擇多個元素，</span><span>使用步長調整選擇模式（正向或逆向），</span><span>省略部分參數進行靈活操作。</span></p><h2>w13_hw</h2>
+<p><span>說明:這範例程式在說明了索引存取與切篇操作的運用，</span><span>索引存取單一元素，</span><span>切片選擇多個元素，</span><span>使用步長調整選擇模式（正向或逆向），</span><span>省略部分參數進行靈活操作。</span></p>
+<h2>w13_hw</h2>
 <p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -295,7 +296,8 @@ ctx.moveTo(160,160)
 ctx.lineTo(60,160)
 ctx.stroke()
 </script>
-</p><h3>w13_ai</h3>
+</p>
+<h3>w13_ai</h3>
 <p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -427,7 +429,83 @@ ctx.beginPath()
 ctx.arc(300, 300, 141.4, 0, 2 * 3.14) # 第二個圓
 ctx.stroke()
 </script>
-</p><h1>HW 2</h1>
+</p>
+<h2>w14</h2>
+<h2>w15</h2>
+<p><span style="background-color: #caede0;">題目一:</span> 請利用 Gist 與 Brython 程式環境,  以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</p>
+<p><span style="color: #000080;"><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/797106cff520a1e1743c479346b19e39/raw/302c1e3c3634daf682b6611937ecd4823b4a9ab7/w15-%25E9%25A1%258C%25E7%259B%25AE1.py" style="color: #000080;">從 1 累加到 100</a></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># sum 初始值設為 0
+sum = 0
+init = 1
+upto = 100
+# 利用 for 重複迴圈與變數加法進行累加
+for i in range(init, upto+1):
+sum = sum + i
+print("從" + str(init) + "累加到" + str(upto) + "=" + str(sum))</pre>
+<p></p>
+<p><strong>Ans:</strong></p>
+<p>從 1 累加到 100的總合<span>是:</span>5050</p>
+<p></p>
+<p></p>
+<p><span style="background-color: #caede0;">題目二:</span> 延伸上題, 設計一個函式 addto(1, 100), 可以完成上述的累加結果. </p>
+<p><span style="color: #000080;"><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/aa063dc03c68d30dc85131a48cdd5c59/raw/cea522ae334d122e8728b174b95ecb4615958aad/w15-%25E9%25A1%258C%25E7%259B%25AE2.py" style="color: #000080;">addto</a></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義 addto 函式
+def addto(start, end):
+total = sum(range(start, end + 1)) # 使用 range() 函式生成範圍，並用 sum() 進行累加
+return total
+
+# 呼叫 addto 函式，並計算 1 到 100 的總和
+result = addto(1, 100)
+
+# 顯示結果
+print(f"從 1 到 100 的總和是：{result}")</pre>
+<p></p>
+<p><strong>Ans:</strong></p>
+<p><span>從 1 到 100 的總和是：5050</span></p>
+<p></p>
+<p></p>
+<p><span style="background-color: #caede0;">題目三:</span> 延伸上題, 設計一個函式 add_only_even(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加結果. </p>
+<p><span style="color: #000080;"><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/b30e2f70b1cfdd7488e68a8b1940427b/raw/b0626a4d7d82cb6c1a2f16a867abd1f78833d155/w15-%25E9%25A1%258C%25E7%259B%25AE3.py" style="color: #000080;">add_only_even</a></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def add_only_even(start, end):
+    # 使用列表推導式篩選範圍內的偶數
+    even_numbers = [num for num in range(start, end + 1) if num % 2 == 0]
+    
+    # 計算偶數的總和
+    total = sum(even_numbers)
+    
+    return total
+
+# 呼叫函式，計算從 1 到 100 的偶數總和
+result = add_only_even(1, 100)
+
+# 顯示結果
+print(f"從 1 到 100 的偶數總和是：{result}")
+</pre>
+<p><strong>Ans:</strong></p>
+<p><span>從 1 到 100 的偶數總和是：2550</span></p>
+<p></p>
+<p><span style="background-color: #caede0;">題</span><span><span style="background-color: #caede0;">目四:</span> 延伸上題, 設計一個函式 add_avoid_8(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加過程, 必須避開數字出現"8"的整數, </span></p>
+<p><span style="color: #000080;"><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/009d68c119d477c77a197d5ad5672519/raw/cda3520c645b5893749cb07a5722cf130134682c/w15-%25E9%25A1%258C%25E7%259B%25AE4.py" style="color: #000080;">add_avoid_8</a></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def add_avoid_8(start, end):
+# 初始化總和
+total = 0
+
+# 遍歷範圍內的每個數字
+for num in range(start, end + 1):
+# 檢查數字是否包含 '8'
+if '8' not in str(num):
+total += num # 如果不包含 '8'，則累加此數字
+
+return total
+
+# 呼叫函式，計算從 1 到 100，避開包含 '8' 的數字
+result = add_avoid_8(1, 100)
+
+# 顯示結果
+print(f"從 1 到 100，避開包含 '8' 的數字的總和是：{result}")</pre>
+<p></p>
+<p><strong>Ans:</strong></p>
+<p><span>從 1 到 100，避開包含 '8' 的數字的總和是：3763</span><br/><br/></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
