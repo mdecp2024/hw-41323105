@@ -51,7 +51,199 @@
 <p> 題目三:</p>
 <p><span> </span><a href="http://mde.tw/cp2024/content/Problem_set.html">http://mde.tw/cp2024/content/Problem_set.html</a><span> 中有利用 Python 程式解決物理與微積分的範例流程, 請根據過程中所得到的 Python 程式</span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/B53NBsjeweY?si=WctomtukmUJ-nJCD" title="YouTube video player" width="560"></iframe></p>
-<h2>w11_hw</h2>
+<h2>Exam234</h2>
+<h3>w16_exam2</h3>
+<p>座標(32,05)為頂點座標所繪製圖形之<a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/d91fbc3c5cc2c95ed737b9ba68227e1c/raw/bb0b66c50f37a08da85d9ec52c93fd79f6de9371/Exam2.py">程式碼</a></p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!--啟動Brython-->
+<p>
+<script>
+window.onload = function () {
+    brython({ debug: 1, pythonpath: ['/static/', './../downloads/py/'] });
+}
+</script>
+</p>
+<div id="brython_div1">
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"></pre>
+</div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+import math
+
+# 建立畫布
+canvas = html.CANVAS(width=1000, height=1000)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ctx = canvas.getContext("2d")
+
+# 定義左上角為原點，座標(32, 5)
+x, y = 32, 5
+
+# 畫 X 軸 (向右為正)
+ctx.beginPath()
+ctx.moveTo(32, 5)  # 從畫布左側
+ctx.lineTo(82, 5)  # 畫到右側
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 畫 Y 軸 (向下為正)
+ctx.beginPath()
+ctx.moveTo(32, 5)  # 從畫布頂部
+ctx.lineTo(32, 55)  # 畫到底部
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 標示 (32, 5)
+ctx.beginPath()
+ctx.arc(x, y, 5, 0, 2 * 3.14159)  # 畫一個半徑為5的圓
+ctx.fillStyle = "black"
+ctx.fill()
+
+# 標示座標文字
+ctx.font = "12px Arial"
+ctx.fillStyle = "black"
+ctx.fillText(f"({x}, {y})", x + 10, y + 15)  # 在點旁顯示座標文字
+
+# 外切圓的中心在(90,80)，半徑為40
+center_x, center_y = 90,80
+radius = 40
+angle_offset = 0  # 六邊形的起始角度
+
+# 計算六邊形的六個頂點
+vertices = []
+for i in range(6):
+    angle = angle_offset + i * (2 * math.pi / 6)  # 每個頂點的角度，60度間隔
+    x = center_x + radius * math.cos(angle)
+    y = center_y + radius * math.sin(angle)
+    vertices.append((x, y))
+
+# 開始畫六邊形
+ctx.beginPath()
+ctx.moveTo(vertices[0][0], vertices[0][1])  # 開始於第一個頂點
+for vertex in vertices[1:]:
+    ctx.lineTo(vertex[0], vertex[1])  # 依次畫出各個邊
+ctx.closePath()  # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "gray"
+ctx.fill()
+
+# 畫菱形
+diamond_center_x, diamond_center_y = 160,80
+diamond_width = 40  # 菱形的寬度
+diamond_height = 80  # 菱形的高度
+
+diamond_vertices = [
+    (diamond_center_x, diamond_center_y - diamond_height / 2),  # 上頂點
+    (diamond_center_x + diamond_width / 2, diamond_center_y),  # 右頂點
+    (diamond_center_x, diamond_center_y + diamond_height / 2),  # 下頂點
+    (diamond_center_x - diamond_width / 2, diamond_center_y),  # 左頂點
+]
+
+# 開始畫菱形
+ctx.beginPath()
+ctx.moveTo(diamond_vertices[0][0], diamond_vertices[0][1])  # 開始於上頂點
+for vertex in diamond_vertices[1:]:
+    ctx.lineTo(vertex[0], vertex[1])  # 依次畫出各個邊
+ctx.closePath()  # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "lightgreen"
+ctx.fill()
+
+# 繪製三角形
+ctx.fillStyle = 'orange'
+ctx.beginPath()
+ctx.moveTo(185,80) # 第一個頂點
+ctx.lineTo(165,120) # 第二個頂點
+ctx.lineTo(205,120) # 第三個頂點
+ctx.closePath() # 封閉路徑
+ctx.fill() # 填充三角形
+
+# 畫圓
+circle_center_x, circle_center_y = 250,80
+circle_radius = 40
+
+# 開始畫圓
+ctx.beginPath()
+ctx.arc(circle_center_x, circle_center_y, circle_radius, 0, 2 * math.pi)  # 圓心和半徑
+ctx.closePath()
+
+# 塗色
+ctx.fillStyle = "lightcoral"
+ctx.fill()
+
+ctx.fillStyle = 'lightblue'
+ctx.beginPath()
+ctx.rect(300,40,80,80) # 填充正方形
+ctx.fill()
+
+ctx.fillStyle = 'lightpink'
+ctx.beginPath()
+ctx.rect(400,65,80,30) # 填充長方形
+ctx.fill()
+</script>
+</p>
+<p></p>
+<p>Brython Maze</p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<div id="brython_div1"></div><h3>w16_exam3</h3>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<p>
+<script>
+window.onload = function() {
+    brython({debug: 1, pythonpath: ['/static/', './../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1">
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# Create the canvas with custom size for the maze
+canvas = html.CANVAS(width=500, height=500)  # Set desired size for the maze
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ctx = canvas.getContext("2d")
+
+# Set the pixel size for the maze walls
+pixel = 2
+
+# Maze layout, drawn with pixel-sized lines
+# Start drawing the maze using moveTo and lineTo
+
+# Drawing a simple maze with blue walls
+ctx.fillStyle = "blue"
+ctx.beginPath()
+
+# Example maze walls (these coordinates are just an example, you can adjust them to create your own maze layout)
+# Top-left corner to right wall
+ctx.moveTo(0, 0)
+ctx.lineTo(200, 0)
+ctx.lineTo(200, 200)
+ctx.lineTo(0, 200)
+ctx.lineTo(0, 0)
+
+# Creating a simple path inside the maze
+ctx.moveTo(50, 50)
+ctx.lineTo(50, 150)
+ctx.lineTo(150, 150)
+ctx.lineTo(150, 50)
+
+# Draw the maze
+ctx.lineWidth = pixel
+ctx.strokeStyle = "blue"
+ctx.stroke()
+
+</pre>
+</div><h3>w16_exam4</h3><h2>w11_hw</h2>
 <p>題目一:</p>
 <p><span>已知可以用 Python 程式</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a><span>, 或</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a><span>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. </span></p>
 <p><span><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/840d945ea70360f88bd120545de61731/raw/54c0e3cac62e3f0befbbe723e588afa9d95a572a/gistfile1.txt">程式碼題目一</a></span></p>
@@ -393,7 +585,8 @@ ctx.moveTo(160,160)
 ctx.lineTo(60,160)
 ctx.stroke()
 </script>
-</p><h3>w13_ai</h3>
+</p>
+<h3>w13_ai</h3>
 <p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/2f56a3304a70883ab25d6e2ea94173e9/raw/c21dba14315e648aa7696c35d03e4a30e020d85e/w13_ai.py">程式碼</a></p>
 <p>
 <script src="/static/brython.js"></script>
@@ -641,7 +834,8 @@ ctx.beginPath()
 ctx.arc(300, 300, 141.4, 0, 2 * 3.14) # 第二個圓
 ctx.stroke()
 </script>
-</p><h2>w14</h2>
+</p>
+<h2>w14</h2>
 <h2>w15</h2>
 <p><span style="background-color: #caede0;">題目一:</span> 請利用 Gist 與 Brython 程式環境,  以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</p>
 <p></p>
@@ -659,31 +853,31 @@ print("從" + str(init) + "累加到" + str(upto) + "=" + str(sum))</pre>
 <li>
 <p>變數初始化：</p>
 <ul style="list-style-type: disc;">
-<li>設定變數<span style="color: #5c60ad;"> <code>sum</code> </span>的初始值為 <code>0</code>，用於存放累加的結果。</li>
-<li>設定 <span style="color: #5c60ad;">init = 1</span> 和 <span style="color: #5c60ad;"><code>upto = 100</code></span>，分別作為累加的起始值與結束值。</li>
+<li>設定變數 <code>sum</code> 的初始值為 <code>0</code>，用於存放累加的結果。</li>
+<li>設定 init = 1 和 <code>upto = 100</code>，分別作為累加的起始值與結束值。</li>
 </ul>
 </li>
 <li>
 <p>for 迴圈執行：</p>
 <ul style="list-style-type: disc;">
-<li>使用 <span style="color: #5c60ad;">for i in range(init, upto+1)</span>，範圍是從 <code>1</code> 到 <code>100</code>（包含 <code>100</code>）。</li>
+<li>使用 for i in range(init, upto+1)，範圍是從 <code>1</code> 到 <code>100</code>（包含 <code>100</code>）。</li>
 <li>每次迴圈執行時，<code>i</code> 會依序取值 <code>1, 2, 3, ..., 100</code>。</li>
-<li>每次將 <code>i</code> 的值加到 <span style="color: #5c60ad;">sum</span> 上，更新 <span style="color: #5c60ad;"><code>sum</code></span> 的值。</li>
+<li>每次將 <code>i</code> 的值加到 sum 上，更新 <code>sum</code> 的值。</li>
 </ul>
 </li>
 <li>
 <p>累加的過程：</p>
 <ul style="list-style-type: disc;">
-<li>第一次迴圈：<span style="color: #5c60ad;">sum</span><code> = 0 + 1 = 1</code></li>
-<li>第二次迴圈：<span style="color: #5c60ad;">sum</span><code> = 1 + 2 = 3</code></li>
-<li>第三次迴圈：<span style="color: #5c60ad;">sum</span><code> = 3 + 3 = 6</code></li>
-<li>最後一次迴圈：<span style="color: #5c60ad;">sum</span><code> = 4950 + 100 = 5050</code></li>
+<li>第一次迴圈：sum<code> = 0 + 1 = 1</code></li>
+<li>第二次迴圈：sum<code> = 1 + 2 = 3</code></li>
+<li>第三次迴圈：sum<code> = 3 + 3 = 6</code></li>
+<li>最後一次迴圈：sum<code> = 4950 + 100 = 5050</code></li>
 </ul>
 </li>
 <li>
 <p>結果輸出：</p>
 <ul style="list-style-type: disc;">
-<li>使用 <code><span style="color: #5c60ad;">print</span></code> 輸出累加結果</li>
+<li>使用 <code>print</code> 輸出累加結果</li>
 </ul>
 </li>
 </ol>
@@ -708,24 +902,24 @@ print(f"從 1 到 100 的總和是：{result}")</pre>
 <li>
 <p>定義函式：</p>
 <ul style="list-style-type: disc;">
-<li>使用 <span style="color: #5c60ad;">def addto(start, end)</span> 定義一個函式，函式的參數為 <span style="color: #5c60ad;"><code>start</code></span> 和 <span style="color: #5c60ad;"><code>end</code></span>。</li>
-<li>函式內部使用 <span style="color: #5c60ad;">range(start, end + 1)</span> 產生從<span style="color: #5c60ad;"> start </span>到 <span style="color: #5c60ad;">end</span>（包含 <span style="color: #5c60ad;">end</span>）的數字範圍。</li>
-<li>利用 <span style="color: #5c60ad;">sum()</span> 函式將範圍內的數字累加，並將結果存入變數 <span style="color: #5c60ad;"><code>total</code></span>。</li>
-<li>最後 <span style="color: #5c60ad;"><code>return</code></span> 累加結果。</li>
+<li>使用 def addto(start, end) 定義一個函式，函式的參數為 <code>start</code> 和 <code>end</code>。</li>
+<li>函式內部使用 range(start, end + 1) 產生從 start 到 end（包含 end）的數字範圍。</li>
+<li>利用 sum() 函式將範圍內的數字累加，並將結果存入變數 <code>total</code>。</li>
+<li>最後 <code>return</code> 累加結果。</li>
 </ul>
 </li>
 <li>
 <p>呼叫函式：</p>
 <ul style="list-style-type: disc;">
-<li>呼叫函式<span style="color: #5c60ad;"> a<code><span style="color: #5c60ad;">d</span>dto(1, 100)</code></span>。</li>
-<li>函式執行時，會計算從 <code>1</code> 到 <code>100</code> 的總和，並將結果存入變數 <span style="color: #5c60ad;">result</span>。</li>
+<li>呼叫函式 a<code>ddto(1, 100)</code>。</li>
+<li>函式執行時，會計算從 <code>1</code> 到 <code>100</code> 的總和，並將結果存入變數 result。</li>
 </ul>
 </li>
 </ol>
 <p><span style="color: #4c9c6c;"><strong>Ans:</strong></span></p>
 <p><span>從 1 到 100 的總和是：5050</span></p>
 <p><strong><span style="color: #4c9c6c;">心得:</span></strong></p>
-<p><span style="color: #000000;">可了</span>解<span style="color: #5c60ad;">range</span>中的start和<span style="color: #5c60ad;">end</span>的運用，再結合<span style="color: #5c60ad;">addto</span>計算出結果<span style="color: #000000;">。</span></p>
+<p><span style="color: #000000;">可了</span>解range中的start和end的運用，再結合addto計算出結果<span style="color: #000000;">。</span></p>
 <p></p>
 <p></p>
 <p><span style="background-color: #caede0;">題目三:</span> 延伸上題, 設計一個函式 add_only_even(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加結果. </p>
@@ -748,25 +942,25 @@ print(f"從 1 到 100 的偶數總和是：{result}")
 <p><span style="color: #4c9c6c;"><strong><span color="#71ad7d">執<span style="color: #4c9c6c;">行過程:</span></span></strong></span></p>
 <ol>
 <li>
-<p>定義函式<span style="color: #5c60ad;"> add_only_even</span>：</p>
+<p>定義函式 add_only_even：</p>
 <ul style="list-style-type: disc;">
-<li>接受兩個參數：<span style="color: #5c60ad;"><code>start</code></span>和 <span style="color: #5c60ad;"><code>end。</code></span></li>
+<li>接受兩個參數：<code>start</code>和 <code>end。</code></li>
 <li>使用列表推導式篩選範圍內的偶數：
 <ul>
-<li><span style="color: #5c60ad;">range(start, end + 1)</span> 會生成從 <span style="color: #5c60ad;"><code>start</code></span> 到 <span style="color: #5c60ad;"><code>end</code></span>（包含 <code>end</code>）的數字序列。</li>
-<li> <span style="color: #5c60ad;">if num % 2 == 0</span> 篩選偶數。</li>
+<li>range(start, end + 1) 會生成從 <code>start</code> 到 <code>end</code>（包含 <code>end</code>）的數字序列。</li>
+<li> if num % 2 == 0 篩選偶數。</li>
 </ul>
 </li>
-<li>使用 <span style="color: #5c60ad;"><code>sum()</code></span> 函數計算列表中所有偶數的總和：
+<li>使用 <code>sum()</code> 函數計算列表中所有偶數的總和：
 <div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
-<div class="overflow-y-auto p-4" dir="ltr"> <span style="color: #5c60ad;">total = sum(even_numbers)</span></div>
+<div class="overflow-y-auto p-4" dir="ltr"> total = sum(even_numbers)</div>
 </div>
 </li>
-<li>返回計算結果<span style="color: #5c60ad;"> total</span>。</li>
+<li>返回計算結果 total。</li>
 </ul>
 </li>
 <li>
-<p>呼叫函式 <span style="color: #5c60ad;">add_only_even(1, 100)</span>：</p>
+<p>呼叫函式 add_only_even(1, 100)：</p>
 <ul style="list-style-type: disc;">
 <li>將範圍設為從 1 到 100，函式會自動篩選 2、4、6、...、100 的偶數，並計算總和。</li>
 </ul>
@@ -774,14 +968,14 @@ print(f"從 1 到 100 的偶數總和是：{result}")
 <li>
 <p>顯示結果：</p>
 <ul style="list-style-type: disc;">
-<li>使用<span style="color: #5c60ad;"> <code>print()</code></span> 函式輸出偶數總和。</li>
+<li>使用 <code>print()</code> 函式輸出偶數總和。</li>
 </ul>
 </li>
 </ol>
 <p><span style="color: #4c9c6c;"><strong>Ans:</strong></span></p>
 <p><span>從 1 到 100 的偶數總和是：2550</span></p>
 <p><span style="color: #4c9c6c;"><strong>心得:</strong></span></p>
-<p>延伸第二題了解<span style="color: #5c60ad;">start</span>和<span style="color: #5c60ad;">end</span><span>的運用在運用<span style="color: #5c60ad;">if num % 2 == 0</span>  篩選出偶數後避開，再進行運算。</span></p>
+<p>延伸第二題了解start和end<span>的運用在運用if num % 2 == 0  篩選出偶數後避開，再進行運算。</span></p>
 <p></p>
 <p><span style="background-color: #caede0;">題</span><span><span style="background-color: #caede0;">目四:</span> 延伸上題, 設計一個函式 add_avoid_8(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加過程, 必須避開數字出現"8"的整數, </span></p>
 <p><span style="color: #000080;"><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/009d68c119d477c77a197d5ad5672519/raw/cda3520c645b5893749cb07a5722cf130134682c/w15-%25E9%25A1%258C%25E7%259B%25AE4.py" style="color: #000080;">add_avoid_8</a></span></p>
@@ -806,24 +1000,24 @@ print(f"從 1 到 100，避開包含 '8' 的數字的總和是：{result}")</pre
 <p><span style="color: #4c9c6c;"><strong><span color="#71ad7d"></span></strong></span></p>
 <ol>
 <li>
-<p>定義函式 <span style="color: #5c60ad;">add_avoid_8</span>：</p>
+<p>定義函式 add_avoid_8：</p>
 <ul style="list-style-type: disc;">
-<li>接受兩個參數：<span style="color: #5c60ad;">start</span><span>和</span><span style="color: #5c60ad;">end</span>。</li>
-<li>初始化變數<span style="color: #5c60ad;"> total<code> = 0</code></span>，用於儲存範圍內避開包含數字 '8' 的總和。</li>
+<li>接受兩個參數：start和end。</li>
+<li>初始化變數 total<code> = 0</code>，用於儲存範圍內避開包含數字 '8' 的總和。</li>
 </ul>
 </li>
 <li>
 <p>迴圈篩選數字：</p>
 <ul style="list-style-type: disc;">
-<li>使用 <span style="color: #5c60ad;">for num in range(start, end + 1)</span> 遍歷從 <span style="color: #5c60ad;">start</span><span style="color: #5c60ad;">到</span><span style="color: #5c60ad;">end</span> 的每個數字（包含 <code>end</code>）。</li>
+<li>使用 for num in range(start, end + 1) 遍歷從 start到end 的每個數字（包含 <code>end</code>）。</li>
 <li>將數字轉換為字串，檢查字串中是否不包含字符 <code>'8'</code>：
 <div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
-<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-python"><span style="color: #5c60ad;">if '8' not in str(num</span>): </code></div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-python">if '8' not in str(num): </code></div>
 </div>
 </li>
 <li>若條件成立（數字不包含 '8'），則將該數字加入總和：
 <div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
-<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary select-none"><span style="color: #5c60ad;">total += num</span></div>
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary select-none">total += num</div>
 </div>
 </li>
 </ul>
@@ -831,13 +1025,13 @@ print(f"從 1 到 100，避開包含 '8' 的數字的總和是：{result}")</pre
 <li>
 <p>返回結果：</p>
 <ul style="list-style-type: disc;">
-<li>迴圈結束後，返回累加的結果<span style="color: #5c60ad;"> total</span>。</li>
+<li>迴圈結束後，返回累加的結果 total。</li>
 </ul>
 </li>
 <li>
 <p>呼叫函式：</p>
 <ul style="list-style-type: disc;">
-<li>設定範圍為從 1 到 100，呼叫函式 <span style="color: #5c60ad;">add_avoid_8(1, 100)</span> 計算結果。</li>
+<li>設定範圍為從 1 到 100，呼叫函式 add_avoid_8(1, 100) 計算結果。</li>
 </ul>
 </li>
 </ol>
@@ -846,8 +1040,9 @@ print(f"從 1 到 100，避開包含 '8' 的數字的總和是：{result}")</pre
 <p><span style="color: #4c9c6c;"><strong>Ans:</strong></span></p>
 <p><span>從 1 到 100，避開包含 '8' 的數字的總和是：3763</span><br/><br/></p>
 <p><strong><span style="color: #4c9c6c;">心得:</span></strong></p>
-<p><span style="color: #000000;">利用<span style="color: #5c60ad;">if '8' not in str(num</span><span>)</span><span style="color: #994949;"><span style="color: #000000;">用來檢查數字有無包含8的函數，再利用</span></span></span>total += num<span style="color: #000000;"><span style="color: #994949;"><span style="color: #000000;"><span>計算該部包含8的倍數之總和。</span></span></span></span></p>
-<p></p><h1>HW 2</h1>
+<p><span style="color: #000000;">利用</span>if '8' not in str(num)用來檢查數字有無包含8的函數，再利用total += num計算該部包<span style="color: #000000;"><span style="color: #994949;"><span style="color: #000000;"><span>含8的倍數之總和。</span></span></span></span></p>
+<p></p>
+<h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>

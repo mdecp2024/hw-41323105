@@ -141,17 +141,57 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w7 << <a href='w7.html'>Previous</a> <a href='Exam234.html'>Next</a> >> Exam234<br /><h1>w10</h1>
-<p>題目一:</p>
-<p><span>請利用</span><a href="https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">程式一</a><span>的原始碼, 分別在自己網站的 Brython 頁面、SciTE 編輯器、命令提示字元視窗、Jupyter Lab 以及 Codespaces 環境中執行, 所完成的操作影片</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ZuSatSj0dzY?si=7i6Ee2JbKN1I8Iij" title="YouTube video player" width="560"></iframe></p>
-<p>題目二:</p>
-<p><span>請問 Python 程式中有關變數的命名, 除了必須以"_", 以及英文大小寫字母開頭之外, 還有甚麼需要特別注意的地方? 與所謂的"關鍵字"</span><span>有關係嗎? 請實際舉例, 針對 Python 程式命名的規則編寫程式</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CHSqjW0flUE?si=Wlyaf2kQmtEmvicf" title="YouTube video player" width="560"></iframe></p>
-<p> 題目三:</p>
-<p><span> </span><a href="http://mde.tw/cp2024/content/Problem_set.html">http://mde.tw/cp2024/content/Problem_set.html</a><span> 中有利用 Python 程式解決物理與微積分的範例流程, 請根據過程中所得到的 Python 程式</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/B53NBsjeweY?si=WctomtukmUJ-nJCD" title="YouTube video player" width="560"></iframe></p>
-<br />w7 << <a href='w7.html'>Previous</a> <a href='Exam234.html'>Next</a> >> Exam234</div>
+    <div id="tipue_search_content">w16_exam2 << <a href='w16_exam2.html'>Previous</a> <a href='w16_exam4.html'>Next</a> >> w16_exam4<br /><h1>w16_exam3</h1>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+<p>
+<script>
+window.onload = function() {
+    brython({debug: 1, pythonpath: ['/static/', './../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1">
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# Create the canvas with custom size for the maze
+canvas = html.CANVAS(width=500, height=500)  # Set desired size for the maze
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ctx = canvas.getContext("2d")
+
+# Set the pixel size for the maze walls
+pixel = 2
+
+# Maze layout, drawn with pixel-sized lines
+# Start drawing the maze using moveTo and lineTo
+
+# Drawing a simple maze with blue walls
+ctx.fillStyle = "blue"
+ctx.beginPath()
+
+# Example maze walls (these coordinates are just an example, you can adjust them to create your own maze layout)
+# Top-left corner to right wall
+ctx.moveTo(0, 0)
+ctx.lineTo(200, 0)
+ctx.lineTo(200, 200)
+ctx.lineTo(0, 200)
+ctx.lineTo(0, 0)
+
+# Creating a simple path inside the maze
+ctx.moveTo(50, 50)
+ctx.lineTo(50, 150)
+ctx.lineTo(150, 150)
+ctx.lineTo(150, 50)
+
+# Draw the maze
+ctx.lineWidth = pixel
+ctx.strokeStyle = "blue"
+ctx.stroke()
+
+</pre>
+</div><br />w16_exam2 << <a href='w16_exam2.html'>Previous</a> <a href='w16_exam4.html'>Next</a> >> w16_exam4</div>
         
     <!-- footer -->
       <div class="container">

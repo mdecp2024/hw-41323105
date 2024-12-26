@@ -141,17 +141,148 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w7 << <a href='w7.html'>Previous</a> <a href='Exam234.html'>Next</a> >> Exam234<br /><h1>w10</h1>
-<p>題目一:</p>
-<p><span>請利用</span><a href="https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">程式一</a><span>的原始碼, 分別在自己網站的 Brython 頁面、SciTE 編輯器、命令提示字元視窗、Jupyter Lab 以及 Codespaces 環境中執行, 所完成的操作影片</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ZuSatSj0dzY?si=7i6Ee2JbKN1I8Iij" title="YouTube video player" width="560"></iframe></p>
-<p>題目二:</p>
-<p><span>請問 Python 程式中有關變數的命名, 除了必須以"_", 以及英文大小寫字母開頭之外, 還有甚麼需要特別注意的地方? 與所謂的"關鍵字"</span><span>有關係嗎? 請實際舉例, 針對 Python 程式命名的規則編寫程式</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CHSqjW0flUE?si=Wlyaf2kQmtEmvicf" title="YouTube video player" width="560"></iframe></p>
-<p> 題目三:</p>
-<p><span> </span><a href="http://mde.tw/cp2024/content/Problem_set.html">http://mde.tw/cp2024/content/Problem_set.html</a><span> 中有利用 Python 程式解決物理與微積分的範例流程, 請根據過程中所得到的 Python 程式</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/B53NBsjeweY?si=WctomtukmUJ-nJCD" title="YouTube video player" width="560"></iframe></p>
-<br />w7 << <a href='w7.html'>Previous</a> <a href='Exam234.html'>Next</a> >> Exam234</div>
+    <div id="tipue_search_content">Exam234 << <a href='Exam234.html'>Previous</a> <a href='w16_exam3.html'>Next</a> >> w16_exam3<br /><h1>w16_exam2</h1>
+<p>座標(32,05)為頂點座標所繪製圖形之<a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/d91fbc3c5cc2c95ed737b9ba68227e1c/raw/bb0b66c50f37a08da85d9ec52c93fd79f6de9371/Exam2.py">程式碼</a></p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+<!--啟動Brython-->
+<p>
+<script>
+window.onload = function () {
+    brython({ debug: 1, pythonpath: ['/static/', './../downloads/py/'] });
+}
+</script>
+</p>
+<div id="brython_div1">
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"></pre>
+</div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+import math
+
+# 建立畫布
+canvas = html.CANVAS(width=1000, height=1000)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ctx = canvas.getContext("2d")
+
+# 定義左上角為原點，座標(32, 5)
+x, y = 32, 5
+
+# 畫 X 軸 (向右為正)
+ctx.beginPath()
+ctx.moveTo(32, 5)  # 從畫布左側
+ctx.lineTo(82, 5)  # 畫到右側
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 畫 Y 軸 (向下為正)
+ctx.beginPath()
+ctx.moveTo(32, 5)  # 從畫布頂部
+ctx.lineTo(32, 55)  # 畫到底部
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 標示 (32, 5)
+ctx.beginPath()
+ctx.arc(x, y, 5, 0, 2 * 3.14159)  # 畫一個半徑為5的圓
+ctx.fillStyle = "black"
+ctx.fill()
+
+# 標示座標文字
+ctx.font = "12px Arial"
+ctx.fillStyle = "black"
+ctx.fillText(f"({x}, {y})", x + 10, y + 15)  # 在點旁顯示座標文字
+
+# 外切圓的中心在(90,80)，半徑為40
+center_x, center_y = 90,80
+radius = 40
+angle_offset = 0  # 六邊形的起始角度
+
+# 計算六邊形的六個頂點
+vertices = []
+for i in range(6):
+    angle = angle_offset + i * (2 * math.pi / 6)  # 每個頂點的角度，60度間隔
+    x = center_x + radius * math.cos(angle)
+    y = center_y + radius * math.sin(angle)
+    vertices.append((x, y))
+
+# 開始畫六邊形
+ctx.beginPath()
+ctx.moveTo(vertices[0][0], vertices[0][1])  # 開始於第一個頂點
+for vertex in vertices[1:]:
+    ctx.lineTo(vertex[0], vertex[1])  # 依次畫出各個邊
+ctx.closePath()  # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "gray"
+ctx.fill()
+
+# 畫菱形
+diamond_center_x, diamond_center_y = 160,80
+diamond_width = 40  # 菱形的寬度
+diamond_height = 80  # 菱形的高度
+
+diamond_vertices = [
+    (diamond_center_x, diamond_center_y - diamond_height / 2),  # 上頂點
+    (diamond_center_x + diamond_width / 2, diamond_center_y),  # 右頂點
+    (diamond_center_x, diamond_center_y + diamond_height / 2),  # 下頂點
+    (diamond_center_x - diamond_width / 2, diamond_center_y),  # 左頂點
+]
+
+# 開始畫菱形
+ctx.beginPath()
+ctx.moveTo(diamond_vertices[0][0], diamond_vertices[0][1])  # 開始於上頂點
+for vertex in diamond_vertices[1:]:
+    ctx.lineTo(vertex[0], vertex[1])  # 依次畫出各個邊
+ctx.closePath()  # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "lightgreen"
+ctx.fill()
+
+# 繪製三角形
+ctx.fillStyle = 'orange'
+ctx.beginPath()
+ctx.moveTo(185,80) # 第一個頂點
+ctx.lineTo(165,120) # 第二個頂點
+ctx.lineTo(205,120) # 第三個頂點
+ctx.closePath() # 封閉路徑
+ctx.fill() # 填充三角形
+
+# 畫圓
+circle_center_x, circle_center_y = 250,80
+circle_radius = 40
+
+# 開始畫圓
+ctx.beginPath()
+ctx.arc(circle_center_x, circle_center_y, circle_radius, 0, 2 * math.pi)  # 圓心和半徑
+ctx.closePath()
+
+# 塗色
+ctx.fillStyle = "lightcoral"
+ctx.fill()
+
+ctx.fillStyle = 'lightblue'
+ctx.beginPath()
+ctx.rect(300,40,80,80) # 填充正方形
+ctx.fill()
+
+ctx.fillStyle = 'lightpink'
+ctx.beginPath()
+ctx.rect(400,65,80,30) # 填充長方形
+ctx.fill()
+</script>
+</p>
+<p></p>
+<p>Brython Maze</p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+<div id="brython_div1"></div><br />Exam234 << <a href='Exam234.html'>Previous</a> <a href='w16_exam3.html'>Next</a> >> w16_exam3</div>
         
     <!-- footer -->
       <div class="container">
