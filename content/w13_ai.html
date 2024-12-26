@@ -142,6 +142,7 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w13_hw << <a href='w13_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14<br /><h1>w13_ai</h1>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/2f56a3304a70883ab25d6e2ea94173e9/raw/c21dba14315e648aa7696c35d03e4a30e020d85e/w13_ai.py">程式碼</a></p>
 <p>
 <script src="./../cmsimde/static/brython.js"></script>
 <script src="./../cmsimde/static/brython_stdlib.js"></script>
@@ -154,7 +155,122 @@ window.onload=function(){
 }
 </script>
 </p>
-<div id="brython_div1"></div>
+<div id="brython_div1">
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+# 初始化畫布
+canvas = html.CANVAS(width=600, height=600)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ctx = canvas.getContext("2d")
+
+# 第一個圓分成四個顏色
+# 畫圓的四個扇形區域
+
+# 第一個扇形 (藍色)
+ctx.fillStyle = 'blue'
+ctx.beginPath()
+ctx.moveTo(200, 200) # 圓心
+ctx.arc(200, 200, 141.4, 3.14/4, 3*3.14/4) # 第一個扇形，範圍 45 到 135 度
+ctx.closePath()
+ctx.fill()
+
+# 第二個扇形 (紅色)
+ctx.fillStyle = 'red'
+ctx.beginPath()
+ctx.moveTo(200, 200) # 圓心
+ctx.arc(200, 200, 141.4, 3*3.14/4, 5*3.14/4) # 第二個扇形，範圍 135 到 225 度
+ctx.closePath()
+ctx.fill()
+
+# 第三個扇形 (綠色)
+ctx.fillStyle = 'green'
+ctx.beginPath()
+ctx.moveTo(200, 200) # 圓心
+ctx.arc(200, 200, 141.4, 5*3.14/4, 7*3.14/4) # 第三個扇形，範圍 225 到 315 度
+ctx.closePath()
+ctx.fill()
+
+# 第四個扇形 (黃色)
+ctx.fillStyle = 'yellow'
+ctx.beginPath()
+ctx.moveTo(200, 200) # 圓心
+ctx.arc(200, 200, 141.4, 7*3.14/4,3.14/4) # 第四個扇形，範圍 315 到 45 度
+ctx.closePath()
+ctx.fill()
+
+# 第一個扇形 (藍色)
+ctx.fillStyle = 'lightblue'
+ctx.beginPath()
+ctx.moveTo(300, 300) # 圓心
+ctx.arc(300, 300, 141.4, 3.14/4, 3*3.14/4) # 第一個扇形，範圍 45 到 135 度
+ctx.closePath()
+ctx.fill()
+
+# 第二個扇形
+ctx.fillStyle = 'purple'
+ctx.beginPath()
+ctx.moveTo(300, 300) # 圓心
+ctx.arc(300, 300, 141.4, 3*3.14/4, 5*3.14/4) # 第二個扇形，範圍 135 到 225 度
+ctx.closePath()
+ctx.fill()
+
+# 第三個扇形
+ctx.fillStyle = 'gray'
+ctx.beginPath()
+ctx.moveTo(300, 300) # 圓心
+ctx.arc(300, 300, 141.4, 5*3.14/4, 7*3.14/4) # 第三個扇形，範圍 225 到 315 度
+ctx.closePath()
+ctx.fill()
+
+# 第四個扇形
+ctx.fillStyle = 'brown'
+ctx.beginPath()
+ctx.moveTo(300, 300) # 圓心
+ctx.arc(300, 300, 141.4, 7*3.14/4,3.14/4) # 第四個扇形，範圍 315 到 45 度
+ctx.closePath()
+ctx.fill()
+
+ctx.fillStyle = 'pink'
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200) # 填充第一個正方形
+ctx.fill()
+
+ctx.fillStyle = 'lightgreen' # 綠色
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200) # 填充第二個正方形
+ctx.fill()
+
+ctx.fillStyle = 'orange' # 橘色
+ctx.beginPath()
+ctx.rect(200, 200,100, 100) # 填充第二個正方形
+ctx.fill()
+
+# 畫線條
+ctx.lineWidth = 3
+ctx.strokeStyle = 'blue'
+ctx.beginPath()
+ctx.moveTo(100, 100)
+ctx.lineTo(300, 300)
+ctx.stroke()
+
+# 畫正方形
+ctx.strokeStyle = 'red'
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200) # 第一個正方形
+ctx.rect(200, 200, 200, 200) # 第二個正方形
+ctx.stroke()
+
+# 畫圓
+ctx.strokeStyle = 'black'
+ctx.beginPath()
+ctx.arc(200, 200, 141.4, 0, 2 * 3.14) # 第一個圓
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(300, 300, 141.4, 0, 2 * 3.14) # 第二個圓
+ctx.stroke()</pre>
+</div>
 <p>
 <script type="text/python">
 from browser import html
@@ -273,8 +389,7 @@ ctx.beginPath()
 ctx.arc(300, 300, 141.4, 0, 2 * 3.14) # 第二個圓
 ctx.stroke()
 </script>
-</p>
-<br />w13_hw << <a href='w13_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
+</p><br />w13_hw << <a href='w13_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
         
     <!-- footer -->
       <div class="container">
