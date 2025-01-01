@@ -53,7 +53,127 @@
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/B53NBsjeweY?si=WctomtukmUJ-nJCD" title="YouTube video player" width="560"></iframe></p>
 <h2>Exam234</h2>
 <h3>w16_exam2</h3>
-<p>座標(32,05)為頂點座標所繪製圖形之<a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/d91fbc3c5cc2c95ed737b9ba68227e1c/raw/bb0b66c50f37a08da85d9ec52c93fd79f6de9371/Exam2.py">程式碼</a></p>
+<p><span>請以</span><span>自己的學號最後四碼</span><span>作為繪圖的座標原點, (31,05), 並以 pixel=2 的黑色直線分別利用 Brython 繪圖, 標示出向右為正的 X 軸, 以及向下為正的 Y 軸, 並且利用文字標示出原點座標 (31,05), 之後請自選最左側圖形的起始點座標, 直接在頁面畫出下列圖像。</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/d91fbc3c5cc2c95ed737b9ba68227e1c/raw/bb0b66c50f37a08da85d9ec52c93fd79f6de9371/Exam2.py">程式碼</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+
+# 建立畫布
+canvas = html.CANVAS(width=1000, height=200)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ctx = canvas.getContext("2d")
+
+# 定義左上角為原點，座標(32, 5)
+x, y = 32, 5
+
+# 畫 X 軸 (向右為正)
+ctx.beginPath()
+ctx.moveTo(32, 5) # 從畫布左側
+ctx.lineTo(82, 5) # 畫到右側
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 畫 Y 軸 (向下為正)
+ctx.beginPath()
+ctx.moveTo(32, 5) # 從畫布頂部
+ctx.lineTo(32, 55) # 畫到底部
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# 標示 (32, 5)
+ctx.beginPath()
+ctx.arc(x, y, 5, 0, 2 * 3.14159) # 畫一個半徑為5的圓
+ctx.fillStyle = "black"
+ctx.fill()
+
+# 標示座標文字
+ctx.font = "12px Arial"
+ctx.fillStyle = "black"
+ctx.fillText(f"({x}, {y})", x + 10, y + 15) # 在點旁顯示座標文字
+
+# 外切圓的中心在(90,80)，半徑為40
+center_x, center_y = 90,80
+radius = 40
+angle_offset = 0 # 六邊形的起始角度
+
+# 計算六邊形的六個頂點
+vertices = []
+for i in range(6):
+angle = angle_offset + i * (2 * math.pi / 6) # 每個頂點的角度，60度間隔
+x = center_x + radius * math.cos(angle)
+y = center_y + radius * math.sin(angle)
+vertices.append((x, y))
+
+# 開始畫六邊形
+ctx.beginPath()
+ctx.moveTo(vertices[0][0], vertices[0][1]) # 開始於第一個頂點
+for vertex in vertices[1:]:
+ctx.lineTo(vertex[0], vertex[1]) # 依次畫出各個邊
+ctx.closePath() # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "gray"
+ctx.fill()
+
+# 畫菱形
+diamond_center_x, diamond_center_y = 160,80
+diamond_width = 40 # 菱形的寬度
+diamond_height = 80 # 菱形的高度
+
+diamond_vertices = [
+(diamond_center_x, diamond_center_y - diamond_height / 2), # 上頂點
+(diamond_center_x + diamond_width / 2, diamond_center_y), # 右頂點
+(diamond_center_x, diamond_center_y + diamond_height / 2), # 下頂點
+(diamond_center_x - diamond_width / 2, diamond_center_y), # 左頂點
+]
+
+# 開始畫菱形
+ctx.beginPath()
+ctx.moveTo(diamond_vertices[0][0], diamond_vertices[0][1]) # 開始於上頂點
+for vertex in diamond_vertices[1:]:
+ctx.lineTo(vertex[0], vertex[1]) # 依次畫出各個邊
+ctx.closePath() # 關閉路徑
+
+# 塗色
+ctx.fillStyle = "lightgreen"
+ctx.fill()
+
+# 繪製三角形
+ctx.fillStyle = 'orange'
+ctx.beginPath()
+ctx.moveTo(185,80) # 第一個頂點
+ctx.lineTo(165,120) # 第二個頂點
+ctx.lineTo(205,120) # 第三個頂點
+ctx.closePath() # 封閉路徑
+ctx.fill() # 填充三角形
+
+# 畫圓
+circle_center_x, circle_center_y = 250,80
+circle_radius = 40
+
+# 開始畫圓
+ctx.beginPath()
+ctx.arc(circle_center_x, circle_center_y, circle_radius, 0, 2 * math.pi) # 圓心和半徑
+ctx.closePath()
+
+# 塗色
+ctx.fillStyle = "lightcoral"
+ctx.fill()
+
+ctx.fillStyle = 'lightblue'
+ctx.beginPath()
+ctx.rect(300,40,80,80) # 填充正方形
+ctx.fill()
+
+ctx.fillStyle = 'lightpink'
+ctx.beginPath()
+ctx.rect(400,65,80,30) # 填充長方形
+ctx.fill()</pre>
+<p><br/><br/></p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 <!--啟動Brython-->
@@ -64,9 +184,7 @@ window.onload = function () {
 }
 </script>
 </p>
-<div id="brython_div1">
-<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"></pre>
-</div>
+<div id="brython_div1"></div>
 <p>
 <script type="text/python">
 from browser import html
@@ -74,7 +192,7 @@ from browser import document as doc
 import math
 
 # 建立畫布
-canvas = html.CANVAS(width=1000, height=1000)
+canvas = html.CANVAS(width=1000, height=200)
 brython_div = doc["brython_div1"]
 brython_div <= canvas
 ctx = canvas.getContext("2d")
@@ -189,62 +307,381 @@ ctx.rect(400,65,80,30) # 填充長方形
 ctx.fill()
 </script>
 </p>
-<p></p>
-<p>Brython Maze</p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-<div id="brython_div1"></div><h3>w16_exam3</h3>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-<p>
-<script>
-window.onload = function() {
-    brython({debug: 1, pythonpath: ['/static/', './../downloads/py/']});
-}
-</script>
-</p>
-<div id="brython_div1">
+<p>心得:了解如何運用Brython定義座標及繪製多種圖形，再利用<span style="color: #6a8299;">ctx.fillStyle</span>(設定填充圖形顏色或樣式的屬性)和<span style="color: #6a8299;">ctx.fill</span>(填充圖形)。</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Up3IpjMd2lI?si=jb62pXmFvsJi6n2B" title="YouTube video player" width="560"></iframe></p>
+<p></p><h3>w16_exam3</h3>
+<p><span>請以</span><span>自己的學號最後四碼</span><span>作為下列繪圖的左上方點座標, (31,05), 之後請利用 </span><span>pixel=2 的藍色直線</span><span>, </span><span>自訂迷宮畫布大小</span><span>, 直接在頁面畫出下列圖像。</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/996065e3b48d0c12b3765be7fff17765/raw/e42db79ff4e0e84a999ceecacec8b414143f07b1/w16-exam3.py">程式碼</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 
-# Create the canvas with custom size for the maze
-canvas = html.CANVAS(width=500, height=500)  # Set desired size for the maze
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300) # 設定迷宮畫布大小
 brython_div = doc["brython_div1"]
 brython_div &lt;= canvas
+
+# 取得 canvas 的繪圖上下文
 ctx = canvas.getContext("2d")
 
-# Set the pixel size for the maze walls
-pixel = 2
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
 
-# Maze layout, drawn with pixel-sized lines
-# Start drawing the maze using moveTo and lineTo
-
-# Drawing a simple maze with blue walls
-ctx.fillStyle = "blue"
-ctx.beginPath()
-
-# Example maze walls (these coordinates are just an example, you can adjust them to create your own maze layout)
-# Top-left corner to right wall
-ctx.moveTo(0, 0)
-ctx.lineTo(200, 0)
-ctx.lineTo(200, 200)
-ctx.lineTo(0, 200)
-ctx.lineTo(0, 0)
-
-# Creating a simple path inside the maze
-ctx.moveTo(50, 50)
-ctx.lineTo(50, 150)
-ctx.lineTo(150, 150)
-ctx.lineTo(150, 50)
-
-# Draw the maze
-ctx.lineWidth = pixel
+# 定義藍色線條
 ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100)
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
+ctx.stroke()</pre>
+<p><br/><br/></p>
+<p><br/>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!--啟動Brython-->
+<p>
+<script>
+window.onload = function () {
+    brython({ debug: 1, pythonpath: ['/static/', './../downloads/py/'] });
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300)  # 設定迷宮畫布大小
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+ 
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
+ 
+# 定義藍色線條
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+ 
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+ 
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150) 
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50) 
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100) 
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50) 
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150) 
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
+ctx.stroke()
+</script>
+</p>
+<p>心得:這城市的亮點所在於座標的偏移利用<span style="color: #6a8299;">offset_x</span>和<span style="color: #6a8299;">offset_y</span>決定偏移xy軸的位置，再藉由<span style="color: #6a8299;">ctx.moveTo()</span>(將繪圖筆移動到指定的座標)和<span style="color: #6a8299;">ctx.lineTo()</span>(繪圖筆的位置畫一條直線到指定的座標)用來設定繪圖的起始點與終點<span>再利用</span><span style="color: #6a8299;">ctx.stroke()</span>來繪製簡易迷宮。</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/aBUwg8Oetn0?si=8l5QRFBvHbydaWFL" title="YouTube video player" width="560"></iframe></p>
+<p></p><h3>w16_exam4</h3>
+<p><span>請以</span><span>自己的學號最後四碼</span><span>作為下列繪圖的左上方點座標(31,05), 之後請利用 </span><span>pixel=2 的黑色直線</span><span>, </span><span>自訂迷宮畫布大小</span><span>, 直接在頁面畫出下列圖像, 並且</span><span>利用紅色連續線段標示從上方入口, 走至下方出口的路線圖</span><span>.</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/229d9cdc5335c6c94c480a94417bf441/raw/b215bf0892431a6536f2e61e270353539219f7fb/w16-exam4.py">程式碼</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300) # 設定迷宮畫布大小
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
+
+# 定義藍色線條
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100)
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
 ctx.stroke()
 
-</pre>
-</div><h3>Exam4</h3>
-<h2>w11_hw</h2>
+# 定義紅色線條
+ctx.strokeStyle = "red"
+ctx.lineWidth = 2
+
+# 開始繪製迷宮入口至出口的路線 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+
+# 繪製入口至出口的路線線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 125, offset_y + 0)
+ctx.lineTo(offset_x + 125, offset_y + 25)
+ctx.moveTo(offset_x + 125, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 25)
+ctx.moveTo(offset_x + 225, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 125)
+ctx.moveTo(offset_x + 225, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 125)
+ctx.moveTo(offset_x + 175, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 75)
+ctx.moveTo(offset_x + 175, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 75)
+ctx.moveTo(offset_x + 125, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 125)
+ctx.moveTo(offset_x + 125, offset_y + 125)
+ctx.lineTo(offset_x + 25, offset_y + 125)
+ctx.moveTo(offset_x + 25, offset_y + 125)
+ctx.lineTo(offset_x + 25, offset_y + 225)
+ctx.moveTo(offset_x + 25, offset_y + 225)
+ctx.lineTo(offset_x + 75, offset_y + 225)
+ctx.moveTo(offset_x + 75, offset_y + 225)
+ctx.lineTo(offset_x + 75, offset_y + 175)
+ctx.moveTo(offset_x + 75, offset_y + 175)
+ctx.lineTo(offset_x + 175, offset_y + 175)
+ctx.moveTo(offset_x + 175, offset_y + 175)
+ctx.lineTo(offset_x + 175, offset_y + 225)
+ctx.moveTo(offset_x + 175, offset_y + 225)
+ctx.lineTo(offset_x + 125, offset_y + 225)
+ctx.moveTo(offset_x + 125, offset_y + 225)
+ctx.lineTo(offset_x + 125, offset_y + 250)
+
+ctx.stroke()</pre>
+<p><br/><br/></p>
+<p><br/>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!--啟動Brython-->
+<p>
+<script>
+window.onload = function () {
+    brython({ debug: 1, pythonpath: ['/static/', './../downloads/py/'] });
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300)  # 設定迷宮畫布大小
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+ 
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
+ 
+# 定義藍色線條
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+ 
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+ 
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150) 
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50) 
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100) 
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50) 
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150) 
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
+ctx.stroke()
+
+# 定義紅色線條
+ctx.strokeStyle = "red"
+ctx.lineWidth = 2
+ 
+# 開始繪製迷宮入口至出口的路線 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+ 
+# 繪製入口至出口的路線線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 125, offset_y + 0) 
+ctx.lineTo(offset_x + 125, offset_y + 25)
+ctx.moveTo(offset_x + 125, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 25)
+ctx.moveTo(offset_x + 225, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 125)
+ctx.moveTo(offset_x + 225, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 125)
+ctx.moveTo(offset_x + 175, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 75)
+ctx.moveTo(offset_x + 175, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 75)
+ctx.moveTo(offset_x + 125, offset_y + 75) 
+ctx.lineTo(offset_x + 125, offset_y + 125)
+ctx.moveTo(offset_x + 125, offset_y + 125) 
+ctx.lineTo(offset_x + 25, offset_y + 125)
+ctx.moveTo(offset_x + 25, offset_y + 125) 
+ctx.lineTo(offset_x + 25, offset_y + 225)
+ctx.moveTo(offset_x + 25, offset_y + 225) 
+ctx.lineTo(offset_x + 75, offset_y + 225)
+ctx.moveTo(offset_x + 75, offset_y + 225) 
+ctx.lineTo(offset_x + 75, offset_y + 175)
+ctx.moveTo(offset_x + 75, offset_y + 175) 
+ctx.lineTo(offset_x + 175, offset_y + 175)
+ctx.moveTo(offset_x + 175, offset_y + 175) 
+ctx.lineTo(offset_x + 175, offset_y + 225)
+ctx.moveTo(offset_x + 175, offset_y + 225) 
+ctx.lineTo(offset_x + 125, offset_y + 225)
+ctx.moveTo(offset_x + 125, offset_y + 225) 
+ctx.lineTo(offset_x + 125, offset_y + 250)
+
+ctx.stroke()
+</script>
+</p>
+<p>心得:<span>這城市的亮點所在於座標的偏移利用</span><span style="color: #6a8299;">offset_x</span><span>和</span><span style="color: #6a8299;">offset_y</span><span>決定偏移xy軸的位置，藉由</span><span style="color: #6a8299;">ctx.moveTo()</span><span>(將繪圖筆移動到指定的座標)和</span><span style="color: #6a8299;">ctx.lineTo()</span><span>(繪圖筆的位置畫一條直線到指定的座標)用來設定繪圖的起始點與終點再利用<span style="color: #6a8299;">ctx.stroke()</span>來繪製簡易迷宮和入口至出口的路線圖。</span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/-41Uzk9zu2c?si=2EVPVzsAQQUwBU3b" title="YouTube video player" width="560"></iframe></p>
+<p></p><h2>w11_hw</h2>
 <p>題目一:</p>
 <p><span>已知可以用 Python 程式</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a><span>, 或</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a><span>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. </span></p>
 <p><span><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/840d945ea70360f88bd120545de61731/raw/54c0e3cac62e3f0befbbe723e588afa9d95a572a/gistfile1.txt">程式碼題目一</a></span></p>

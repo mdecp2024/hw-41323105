@@ -141,7 +141,236 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='w11_hw.html'>Next</a> >> w11_hw<br /><h1>w16_exam4</h1><br />w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='w11_hw.html'>Next</a> >> w11_hw</div>
+    <div id="tipue_search_content">w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='w11_hw.html'>Next</a> >> w11_hw<br /><h1>w16_exam4</h1>
+<p><span>請以</span><span>自己的學號最後四碼</span><span>作為下列繪圖的左上方點座標(31,05), 之後請利用 </span><span>pixel=2 的黑色直線</span><span>, </span><span>自訂迷宮畫布大小</span><span>, 直接在頁面畫出下列圖像, 並且</span><span>利用紅色連續線段標示從上方入口, 走至下方出口的路線圖</span><span>.</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/229d9cdc5335c6c94c480a94417bf441/raw/b215bf0892431a6536f2e61e270353539219f7fb/w16-exam4.py">程式碼</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300) # 設定迷宮畫布大小
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
+
+# 定義藍色線條
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0)
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100)
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
+ctx.stroke()
+
+# 定義紅色線條
+ctx.strokeStyle = "red"
+ctx.lineWidth = 2
+
+# 開始繪製迷宮入口至出口的路線 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+
+# 繪製入口至出口的路線線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 125, offset_y + 0)
+ctx.lineTo(offset_x + 125, offset_y + 25)
+ctx.moveTo(offset_x + 125, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 25)
+ctx.moveTo(offset_x + 225, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 125)
+ctx.moveTo(offset_x + 225, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 125)
+ctx.moveTo(offset_x + 175, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 75)
+ctx.moveTo(offset_x + 175, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 75)
+ctx.moveTo(offset_x + 125, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 125)
+ctx.moveTo(offset_x + 125, offset_y + 125)
+ctx.lineTo(offset_x + 25, offset_y + 125)
+ctx.moveTo(offset_x + 25, offset_y + 125)
+ctx.lineTo(offset_x + 25, offset_y + 225)
+ctx.moveTo(offset_x + 25, offset_y + 225)
+ctx.lineTo(offset_x + 75, offset_y + 225)
+ctx.moveTo(offset_x + 75, offset_y + 225)
+ctx.lineTo(offset_x + 75, offset_y + 175)
+ctx.moveTo(offset_x + 75, offset_y + 175)
+ctx.lineTo(offset_x + 175, offset_y + 175)
+ctx.moveTo(offset_x + 175, offset_y + 175)
+ctx.lineTo(offset_x + 175, offset_y + 225)
+ctx.moveTo(offset_x + 175, offset_y + 225)
+ctx.lineTo(offset_x + 125, offset_y + 225)
+ctx.moveTo(offset_x + 125, offset_y + 225)
+ctx.lineTo(offset_x + 125, offset_y + 250)
+
+ctx.stroke()</pre>
+<p><br/><br/></p>
+<p><br/>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!--啟動Brython-->
+<p>
+<script>
+window.onload = function () {
+    brython({ debug: 1, pythonpath: ['/static/', './../downloads/py/'] });
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=300)  # 設定迷宮畫布大小
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+ 
+# 標示左上方點座標 (31, 05)
+ctx.font = "12px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31, 05)", 35, 17)
+ 
+# 定義藍色線條
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 2
+ 
+# 開始繪製迷宮 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+ 
+# 繪製迷宮線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 100, offset_y + 0)
+ctx.moveTo(offset_x + 150, offset_y + 0)
+ctx.lineTo(offset_x + 250, offset_y + 0)
+ctx.moveTo(offset_x + 50, offset_y + 50)
+ctx.lineTo(offset_x + 200, offset_y + 50)
+ctx.moveTo(offset_x + 0, offset_y + 100)
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 50, offset_y + 150)
+ctx.lineTo(offset_x + 200, offset_y + 150)
+ctx.moveTo(offset_x + 100, offset_y + 200)
+ctx.lineTo(offset_x + 150, offset_y + 200)
+ctx.moveTo(offset_x + 0, offset_y + 250) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 250) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+ctx.moveTo(offset_x + 0, offset_y + 0) 
+ctx.lineTo(offset_x + 0, offset_y + 250)
+ctx.moveTo(offset_x + 50, offset_y + 150) 
+ctx.lineTo(offset_x + 50, offset_y + 200)
+ctx.moveTo(offset_x + 100, offset_y + 50) 
+ctx.lineTo(offset_x + 100, offset_y + 100)
+ctx.moveTo(offset_x + 100, offset_y + 200) 
+ctx.lineTo(offset_x + 100, offset_y + 250)
+ctx.moveTo(offset_x + 150, offset_y + 100) 
+ctx.lineTo(offset_x + 150, offset_y + 150)
+ctx.moveTo(offset_x + 200, offset_y + 50) 
+ctx.lineTo(offset_x + 200, offset_y + 100)
+ctx.moveTo(offset_x + 200, offset_y + 150) 
+ctx.lineTo(offset_x + 200, offset_y + 250)
+ctx.moveTo(offset_x + 250, offset_y + 0) 
+ctx.lineTo(offset_x + 250, offset_y + 250)
+
+ctx.stroke()
+
+# 定義紅色線條
+ctx.strokeStyle = "red"
+ctx.lineWidth = 2
+ 
+# 開始繪製迷宮入口至出口的路線 (座標偏移以 (31, 05) 為起點)
+offset_x = 31
+offset_y = 5
+ 
+# 繪製入口至出口的路線線條
+ctx.beginPath()
+ctx.moveTo(offset_x + 125, offset_y + 0) 
+ctx.lineTo(offset_x + 125, offset_y + 25)
+ctx.moveTo(offset_x + 125, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 25)
+ctx.moveTo(offset_x + 225, offset_y + 25)
+ctx.lineTo(offset_x + 225, offset_y + 125)
+ctx.moveTo(offset_x + 225, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 125)
+ctx.moveTo(offset_x + 175, offset_y + 125)
+ctx.lineTo(offset_x + 175, offset_y + 75)
+ctx.moveTo(offset_x + 175, offset_y + 75)
+ctx.lineTo(offset_x + 125, offset_y + 75)
+ctx.moveTo(offset_x + 125, offset_y + 75) 
+ctx.lineTo(offset_x + 125, offset_y + 125)
+ctx.moveTo(offset_x + 125, offset_y + 125) 
+ctx.lineTo(offset_x + 25, offset_y + 125)
+ctx.moveTo(offset_x + 25, offset_y + 125) 
+ctx.lineTo(offset_x + 25, offset_y + 225)
+ctx.moveTo(offset_x + 25, offset_y + 225) 
+ctx.lineTo(offset_x + 75, offset_y + 225)
+ctx.moveTo(offset_x + 75, offset_y + 225) 
+ctx.lineTo(offset_x + 75, offset_y + 175)
+ctx.moveTo(offset_x + 75, offset_y + 175) 
+ctx.lineTo(offset_x + 175, offset_y + 175)
+ctx.moveTo(offset_x + 175, offset_y + 175) 
+ctx.lineTo(offset_x + 175, offset_y + 225)
+ctx.moveTo(offset_x + 175, offset_y + 225) 
+ctx.lineTo(offset_x + 125, offset_y + 225)
+ctx.moveTo(offset_x + 125, offset_y + 225) 
+ctx.lineTo(offset_x + 125, offset_y + 250)
+
+ctx.stroke()
+</script>
+</p>
+<p>心得:<span>這城市的亮點所在於座標的偏移利用</span><span style="color: #6a8299;">offset_x</span><span>和</span><span style="color: #6a8299;">offset_y</span><span>決定偏移xy軸的位置，藉由</span><span style="color: #6a8299;">ctx.moveTo()</span><span>(將繪圖筆移動到指定的座標)和</span><span style="color: #6a8299;">ctx.lineTo()</span><span>(繪圖筆的位置畫一條直線到指定的座標)用來設定繪圖的起始點與終點再利用<span style="color: #6a8299;">ctx.stroke()</span>來繪製簡易迷宮和入口至出口的路線圖。</span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/-41Uzk9zu2c?si=2EVPVzsAQQUwBU3b" title="YouTube video player" width="560"></iframe></p>
+<p></p><br />w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='w11_hw.html'>Next</a> >> w11_hw</div>
         
     <!-- footer -->
       <div class="container">
