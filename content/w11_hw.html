@@ -145,17 +145,95 @@ img.add_border {
 <p>題目一:</p>
 <p><span>已知可以用 Python 程式</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a><span>, 或</span><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a><span>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. </span></p>
 <p><span><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/840d945ea70360f88bd120545de61731/raw/54c0e3cac62e3f0befbbe723e588afa9d95a572a/gistfile1.txt">程式碼題目一</a></span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/XSV0QIoKrLA?si=SJCbKnzuEgy7n2je" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 引入數學模組，用於計算平方根
+import math
+
+# 設定圖案的大小 (寬度和高度)，此處為 10x10
+size = 10
+# 計算圓的半徑，將圖案的大小整除 2，得到半徑為 5
+radius = size // 2
+# 計算圓心的位置，減去 0.5 讓圓心更居中
+center = radius - 0.5
+
+# 外層迴圈：逐行處理圖案，`y` 表示行數
+for y in range(size):
+# 內層迴圈：逐列處理圖案，`x` 表示列數
+for x in range(size):
+# 計算當前點 (x, y) 到圓心的距離
+# 使用歐幾里得距離公式 sqrt((x - center)^2 + (y - center)^2)
+distance = math.sqrt((x - center) ** 2 + (y - center) ** 2)
+# 如果該點距離圓心的距離小於或等於半徑，則在該點畫星號
+if distance &lt;= radius:
+print(" * ", end="") # end="" 是為了不換行
+else:
+# 如果該點距離圓心的距離大於半徑，則在該點畫空白
+print(" ", end="")
+# 每處理完一行，換行到下一行
+print()
+
+</pre>
+<p><br/><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/XSV0QIoKrLA?si=SJCbKnzuEgy7n2je" title="YouTube video player" width="560"></iframe></p>
 <p>心得:利用ChatGPT查詢運用"*" 如何運用<span>字元列印出圓型區域，在進入Brython進行排列組合之操作實證出結論，也讓我更加認知ChatGPT的運用方式及運用範圍如此廣大。</span></p>
 <p></p>
 <p></p>
 <p>題目二:</p>
 <p>已知可以在網頁中利用 Brython 繪製方格與塗色, 如下連結, 請設法修改此一程式, 直接將程式存入個人的 Gist, 並利用黑色方塊圍出一個圓形區域.</p>
 <p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/361c20d173b17494cbc9f737385b919b/raw/1a82e691313dce22df2352d703572befb1c4748d/gistfile1.txt">程式碼題目二</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+# 圓心位置和半徑
+center = (5, 5) # 圓心在 (5, 5)
+radius = 5 # 半徑為 5
+# 每個格子大小是 gs*gs，畫布大小是 10x10 格
+
+ctx = canvas.getContext("2d")
+
+# 畫矩形框線
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+ctx.lineWidth = s
+ctx.strokeStyle = c
+ctx.beginPath()
+ctx.rect(lux, luy, w, h)
+ctx.stroke()
+
+# 畫格子
+def grid(width, height, grid_pix):
+for i in range(width):
+for j in range(height):
+dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 填充顏色
+def fill(x, y, color):
+ctx.fillStyle = color
+ctx.fillRect(x, y, gs, gs)
+
+# 繪製圓形
+def drawCircle(center, radius, gs):
+for y in range(10): # 10格高
+for x in range(10): # 10格寬
+# 計算每個格子是否在圓內部
+cx = x + 0.5 # 每個格子的中心 x 座標
+cy = y + 0.5 # 每個格子的中心 y 座標
+dist = ((cx - center[0]) ** 2 + (cy - center[1]) ** 2) ** 0.5
+# 如果距離圓心小於或等於半徑，填充黑色
+if dist &lt;= radius:
+fill(x * gs, y * gs, "black")
+
+# 繪製格子和圓形
+grid(10, 10, gs)
+drawCircle(center, radius, gs)</pre>
+<p><br/><br/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/LlRakacCNUM?si=Ws2miIapBNt_7byP" title="YouTube video player" width="560"></iframe></p>
 <p><span>心得:運用ChatGPT查詢如何利用黑色方塊圍出一個圓形區域</span></p>
-<p><img alt="" src="./../images/index.html"/><img alt="" height="129" src="./../images/螢幕擷取畫面 2024-11-28 152348.png" width="130"/></p>
-<br />w16_exam4 << <a href='w16_exam4.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw</div>
+<p><img alt="" src="./../images/index.html"/><img alt="" height="129" src="./../images/螢幕擷取畫面 2024-11-28 152348.png" width="130"/></p><br />w16_exam4 << <a href='w16_exam4.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw</div>
         
     <!-- footer -->
       <div class="container">
