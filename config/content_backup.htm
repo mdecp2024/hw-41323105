@@ -721,6 +721,58 @@ print()
 <p>題目二:</p>
 <p>已知可以在網頁中利用 Brython 繪製方格與塗色, 如下連結, 請設法修改此一程式, 直接將程式存入個人的 Gist, 並利用黑色方塊圍出一個圓形區域.</p>
 <p><a href="https://mdecp2024.github.io/hw-41323105/content/Brython.html?src=https://gist.githubusercontent.com/41323105/361c20d173b17494cbc9f737385b919b/raw/1a82e691313dce22df2352d703572befb1c4748d/gistfile1.txt">程式碼題目二</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+# 圓心位置和半徑
+center = (5, 5) # 圓心在 (5, 5)
+radius = 5 # 半徑為 5
+# 每個格子大小是 gs*gs，畫布大小是 10x10 格
+
+ctx = canvas.getContext("2d")
+
+# 畫矩形框線
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+ctx.lineWidth = s
+ctx.strokeStyle = c
+ctx.beginPath()
+ctx.rect(lux, luy, w, h)
+ctx.stroke()
+
+# 畫格子
+def grid(width, height, grid_pix):
+for i in range(width):
+for j in range(height):
+dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 填充顏色
+def fill(x, y, color):
+ctx.fillStyle = color
+ctx.fillRect(x, y, gs, gs)
+
+# 繪製圓形
+def drawCircle(center, radius, gs):
+for y in range(10): # 10格高
+for x in range(10): # 10格寬
+# 計算每個格子是否在圓內部
+cx = x + 0.5 # 每個格子的中心 x 座標
+cy = y + 0.5 # 每個格子的中心 y 座標
+dist = ((cx - center[0]) ** 2 + (cy - center[1]) ** 2) ** 0.5
+# 如果距離圓心小於或等於半徑，填充黑色
+if dist &lt;= radius:
+fill(x * gs, y * gs, "black")
+
+# 繪製格子和圓形
+grid(10, 10, gs)
+drawCircle(center, radius, gs)</pre>
+<p><br/><br/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/LlRakacCNUM?si=Ws2miIapBNt_7byP" title="YouTube video player" width="560"></iframe></p>
 <p><span>心得:運用ChatGPT查詢如何利用黑色方塊圍出一個圓形區域</span></p>
 <p><img alt="" src="/images/index.html"/><img alt="" height="129" src="/images/螢幕擷取畫面 2024-11-28 152348.png" width="130"/></p><h2>w12_hw</h2>
@@ -1727,12 +1779,11 @@ print(f"從 1 到 100，避開包含 '8' 的數字的總和是：{result}")</pre
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
 <p>期末書面專題報告檔案 (pdf):</p>
-<p style="padding-left: 30px;">......</p>
+<p><span style="color: #123d87;"><a href="file:///C:/Users/Admin/Desktop/41323105%E8%A8%88%E7%AE%97%E6%A9%9F%E5%A0%B1%E5%91%8A.pdf" style="color: #123d87;">期末報告</a></span></p>
 <p>電腦輔助設計與實習課程總結心得:</p>
 <p style="padding-left: 30px;">......</p>
 <p>期末報告自評成績:</p>
-<p style="padding-left: 30px;">完成上述流程後, 請將 Final Report 自評分數輸入 cp2024 自評表單中.</p>
-<h1>Brython</h1>
+<p style="padding-left: 30px;">完成上述流程後, 請將 Final Report 自評分數輸入 cp2024 自評表單中.</p><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <p><!-- 導入 brython 程式庫 --></p>
